@@ -18,6 +18,4 @@ int maxmultiply(int mass[], int number)
 
 int main()
 {
-	int mass[5] = {-1,-2,0,-3328,2};
-	maxmultiply(mass,5);
 }
