@@ -1,0 +1,26 @@
+#include <iostream> 
+using namespace std;
+
+int** a; int** b; int s;
+int ax, ay, by; int c[100][100]; 
+
+void matriza(int** a, int** b, int ax, int ay, int by)
+{
+	for (int i = 0; i < ax; i++)
+	{
+		for (int l = 0; l < ay; l++)
+		{
+			s = 0;
+			for (int j = 0; j < by; j++)
+			{
+				s += a[i][j] * b[j][l];
+			}
+			c[i][l] = s;
+		}
+	}
+}
+int main()
+{   
+	matriza(a, b, ay, ax, by);
+	return 0;
+}
