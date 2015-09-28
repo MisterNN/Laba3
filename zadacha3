@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+int m, n; int a[100]; int b[100]; int result[100]; int sum[100];
+
+int *multiply(int result[], int a[], int b[])
+{
+	for (int i = 0; i <= m; i++)
+	{
+		for (int j = 0; j <= n; j++)
+		{
+			result[i + j] += a[i] * b[j];
+		}
+	}
+	return result;
+}
+
+int *addiction(int sum[], int a[], int b[], int m, int n)//m и n - наибольшие степени одного и другого многочлена
+{
+	if (m > n)
+	{
+		for (int i = 0; i <= n; i++)
+			sum[i + m - n] = b[i] + a[i + m - n];
+		for (int i = 0; i < m - n; i++) sum[i] = a[i];
+	}
+	else
+	{
+		for (int i = 0; i <= m; i++)
+			sum[i + n - m] = a[i] + b[i + n - m];
+		for (int i = 0; i <n - m; i++) sum[i] = b[i];
+	}
+	return sum;
+}
+int main()
+{
+	return 0;
+}
