@@ -23,6 +23,7 @@ int* matriza(int* a, int* b, int ax, int ay, int by)
 	}
 	return &c[0][0];
 }
+
 int main()
 {
 	int a[4] = {4,2,9,0};
