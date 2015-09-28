@@ -20,7 +20,39 @@ void matriza(int** a, int** b, int ax, int ay, int by)
 	}
 }
 int main()
-{   
-	matriza(a, b, ay, ax, by);
-	return 0;
+{
+	int** matrix1;
+	int** matrix2;
+	int n , m , b;
+	cin >> n;
+	cin >> m;
+	cin >> b;
+	matrix1 = new int*[n];
+	matrix2 = new int*[b];
+	for(int i = 0;i < n;i++)
+	{
+		matrix1[i] = new int[m];
+		for(int j = 0;j < m;i++)
+		{
+			cin >> matrix1[i][j];
+		}
+	}
+	for(int i = 0;i < b;i++)
+	{
+		matrix2[i] = new int[n];
+		for(int j = 0;j < m;i++)
+		{
+			cin >> matrix2[i][j];
+		}
+	}
+
+	int** result = matrixSum(matrix1,matrix2,n,m,b);
+	for(int i = 0;i < b;i++)
+	{
+		for(int j = 0;j < m;j++)
+		{
+			cout << result[i][j] << " ";
+		}
+		cout << endl;
+	}
 }
