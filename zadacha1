@@ -1,59 +1,50 @@
 #include <iostream> 
 using namespace std;
 
-int a[100]; int b[100];
-int ax, ay, by; int c[100][100]; 
+int a[100];
+int b[100];
+int ax , ay , by;
+int c[100][100];
 
-int* matriza(int *a, int *b, int ax, int ay, int by)
+int* matriza(int* a, int* b, int ax, int ay, int by)
 {
-for (int i = 0; i < 100; i++)
-		for (int j = 0; j < 100; j++)
+	for(int i = 0;i < 100;i++)
+		for(int j = 0;j < 100;j++)
 			c[i][j] = 0;
-	for (int i = 0; i < ax; i++)
+	for(int i = 0;i < ax;i++)
 	{
-		for (int j = 0; j < ay; j++)
+		for(int j = 0;j < ay;j++)
 		{
-			for (int l = 0; l < by; l++)
+			for(int l = 0;l < by;l++)
 			{
-				c[i][j] += *(a + l + 100 * i)*(*(b + j + 100 * l));
+				c[i][j] += *( a + l + ax * i ) * ( *( b + j + by * l ) );
 			}
 		}
 	}
 	return &c[0][0];
 }
+
 int main()
 {
-	int** matrix1;
-	int** matrix2;
-	int n , m , b;
-	cin >> n;
-	cin >> m;
-	cin >> b;
-	matrix1 = new int*[n];
-	matrix2 = new int*[b];
-	for(int i = 0;i < n;i++)
+	int a[4] = {4,2,9,0};
+	int b[4] = {3,1,-3,4};
+	matriza(a,b,2,2,2);
+	for(int i = 0;i < 2;i++)
 	{
-		matrix1[i] = new int[m];
-		for(int j = 0;j < m;i++)
+		for(int j = 0;j < 2;j++)
 		{
-			cin >> matrix1[i][j];
+			cout << c[i][j] << " " ;
 		}
+		cout << endl;
 	}
-	for(int i = 0;i < b;i++)
+	int g[6] = {2,1,-3,0,4,-1};
+	int y[6] = {5,-1,6,-3,0,7};
+	matriza(g,y,2,3,3);
+	for(int i = 0;i < 3;i++)
 	{
-		matrix2[i] = new int[n];
-		for(int j = 0;j < m;i++)
+		for(int j = 0;j < 3;j++)
 		{
-			cin >> matrix2[i][j];
-		}
-	}
-
-	int** result = matrixSum(matrix1,matrix2,n,m,b);
-	for(int i = 0;i < b;i++)
-	{
-		for(int j = 0;j < m;j++)
-		{
-			cout << result[i][j] << " ";
+			cout << c[i][j] << " " ;
 		}
 		cout << endl;
 	}
