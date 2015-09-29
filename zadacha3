@@ -19,15 +19,15 @@ int *addiction(int sum[], int a[], int b[], int m, int n)//m и n - наибол
 {
 	if (m > n)
 	{
-		for (int i = 0; i <= n; i++)
-			sum[i] = b[i] + a[i];
-		for (int i = 0; i < n; i++) sum[i] = a[i];
+		for (int i = 0; i <= m - n; i++)
+			sum[m - n - i] = b[i] + a[i];
+		for (int i = 0; i < m - n; i++) sum[i] = a[i];
 	}
 	else
 	{
-		for (int i = 0; i <= m; i++)
-			sum[i] = a[i] + b[i];
-		for (int i = 0; i < m; i++) sum[i] = b[i];
+		for (int i = 0; i <= n - m; i++)
+			sum[n - m - i] = a[i] + b[i];
+		for (int i = 0; i < n - m; i++) sum[i] = b[i];
 	}
 	return sum;
 }
