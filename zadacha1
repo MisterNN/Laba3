@@ -4,24 +4,28 @@ using namespace std;
 int a[100];
 int b[100];
 int ax , ay , by;
-int c[100][100];
 
-int* matriza(int* a, int* b, int ax, int ay, int by)
+int** matriza(int ** a, int ** b, int ax, int ay, int by)
 {
-	for(int i = 0;i < 100;i++)
-		for(int j = 0;j < 100;j++)
-			c[i][j] = 0;
-	for(int i = 0;i < ax;i++)
+	int** result;
+	result = new int*[ax];
+	for (int i = 0; i < ax; i++)
 	{
-		for(int j = 0;j < ay;j++)
+		result[i] = new int[by];
+	}
+	for (int i = 0; i < ax; i++)
+	{
+		for (int j = 0; j < by; j++)
 		{
-			for(int l = 0;l < by;l++)
+			int s = 0;
+			for (int l = 0; l < ay; l++)
 			{
-				c[i][j] += *( a + l + ax * i ) * ( *( b + j + by * l ) );
+				s += a[i][l]*b[l][j];
 			}
+			result[i][j] = s;
 		}
 	}
-	return &c[0][0];
+	return result;
 }
 
 int main()
