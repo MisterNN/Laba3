@@ -33,5 +33,37 @@ int *addiction(int sum[], int a[], int b[], int m, int n)//m и n - наибол
 }
 int main()
 {
+	int mass1[4]={4,2,2,1};
+	int mass2[4]={2,2,2,2};
+	int mass3[7]={0};
+	int mass7[4]={0};
+	multiply(mass3,mass2,mass1,3,3);
+	for (int i = 0; i <= 6; i++)
+	{
+	cout << mass3[i] << " ";
+	}
+	cout << endl;
+	addiction(mass7,mass2,mass1,3,3);
+	for (int i = 0; i <= 3; i++)
+	{
+	cout << mass7[i] << " ";	
+	}
+	cout << endl;
+	int mass4[2]={4,6};
+	int mass5[7]={1,2,3,4,5,6,7};
+	int mass6[8]={0};
+	int mass8[7]={0};
+	multiply(mass6,mass4,mass5,1,6);
+	for (int i = 0; i <= 7; i++)
+	{
+	cout << mass6[i] << " ";	
+	}
+	cout << endl;
+	addiction(mass8,mass4,mass5,1,6);
+	for (int i = 0; i <= 6; i++)
+	{
+	cout << mass8[i] << " ";	
+	}
+	cout << endl;
 	return 0;
 }
