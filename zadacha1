@@ -5,43 +5,44 @@ int a[100];
 int b[100];
 int ax , ay , by;
 
-int** matriza(int ** a, int ** b, int ax, int ay, int by)
+int** matriza(int** a, int** b, int ax, int ay, int by)
 {
 	int** result;
 	result = new int*[ax];
-	for (int i = 0; i < ax; i++)
+	for(int i = 0;i < ax;i++)
 	{
 		result[i] = new int[by];
 	}
-	for (int i = 0; i < ax; i++)
+	for(int i = 0;i < ax;i++)
 	{
-		for (int j = 0; j < by; j++)
+		for(int j = 0;j < by;j++)
 		{
 			int s = 0;
-			for (int l = 0; l < ay; l++)
+			for(int l = 0;l < ay;l++)
 			{
-				s += a[i][l]*b[l][j];
+				s += a[i][l] * b[l][j];
 			}
 			result[i][j] = s;
 		}
 	}
 	return result;
 }
-void assert(int** checkout,int** matrix1,int** matrix2,int ax,int ay,int bx)
+
+void assert(int** checkout, int** matrix1, int** matrix2, int ax, int ay, int bx)
 {
-	int k=0;
-	int** result=matriza(matrix1,matrix2,ax,ay,bx);
-	for (int i=0;i < bx;i++)
+	int k = 0;
+	int** result = matriza(matrix1,matrix2,ax,ay,bx);
+	for(int i = 0;i < bx;i++)
 	{
-		for (int j=0;j< ay;j++)
+		for(int j = 0;j < ay;j++)
 		{
-			if (checkout[i][j]==result[i][j])
-				{
-		k++;// k++ если значения совпадают,после идет проверка,если К равно количеству значений = значит все они верны,значит мастрицы перемножены праильно.
-	}	
+			if(checkout[i][j] == result[i][j])
+			{
+				k++;// k++ если значения совпадают,после идет проверка,если К равно количеству значений = значит все они верны,значит мастрицы перемножены праильно.
+			}
 		}
 	}
-	if (k==bx*ay)
+	if(k == bx * ay)
 	{
 		cout << "OK" << endl;
 	}
@@ -50,6 +51,7 @@ void assert(int** checkout,int** matrix1,int** matrix2,int ax,int ay,int bx)
 		cout << "FAIL" << endl;
 	}
 }
+
 int main()
 {
 	int** matrix1;
@@ -70,7 +72,7 @@ int main()
 	matrix2[1][1] = 4;
 	int** checkout;
 	checkout = new int * [2];
-	checkout[0]= new int[2];
+	checkout[0] = new int[2];
 	checkout[0][0] = 6;
 	checkout[0][1] = 12;
 	checkout[1] = new int[2];
