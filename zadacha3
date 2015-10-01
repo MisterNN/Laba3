@@ -1,13 +1,17 @@
 #include <iostream>
 using namespace std;
 
-int m, n; int a[100]; int b[100]; int result[100]; int sum[100];
+int m , n;
+int a[100];
+int b[100];
+int result[100];
+int sum[100];
 
-int *multiply(int result[], int a[], int b[])
+int* multiply(int result[], int a[], int b[], int m, int n)
 {
-	for (int i = 0; i <= m; i++)
+	for(int i = 0;i <= m;i++)
 	{
-		for (int j = 0; j <= n; j++)
+		for(int j = 0;j <= n;j++)
 		{
 			result[i + j] += a[i] * b[j];
 		}
@@ -15,55 +19,75 @@ int *multiply(int result[], int a[], int b[])
 	return result;
 }
 
-int *addiction(int sum[], int a[], int b[], int m, int n)//m и n - наибольшие степени одного и другого многочлена
+int* addiction(int sum[], int a[], int b[], int m, int n)//m и n - наибольшие степени одного и другого многочлена
 {
-	if (m > n)
+	if(m > n)
 	{
-		for (int i = 0; i <= n; i++)
+		for(int i = 0;i <= n;i++)
 			sum[i + m - n] = b[i] + a[i + m - n];
-		for (int i = 0; i < m - n; i++) sum[i] = a[i];
+		for(int i = 0;i < m - n;i++) sum[i] = a[i];
 	}
 	else
 	{
-		for (int i = 0; i <= m; i++)
+		for(int i = 0;i <= m;i++)
 			sum[i + n - m] = a[i] + b[i + n - m];
-		for (int i = 0; i <n - m; i++) sum[i] = b[i];
+		for(int i = 0;i < n - m;i++) sum[i] = b[i];
 	}
 	return sum;
 }
+
+void assertaddi(int checkout[], int sum[], int a[], int b[], int n, int m)
+{
+	addiction(sum,a,b,m,n);
+	int k = max(m,n);
+	int t = 0;
+	for(int i = 0;i < k;i++)
+	{
+		if(checkout[i] == sum[i])
+		{
+			t++;
+		}
+	}
+	if(t == k)
+	{
+		cout << "OK" << endl;
+	}
+	else
+	{
+		cout << "FAIL" << endl;
+	}
+}
+
+void assertmulti(int checkout[], int sum[], int a[], int b[], int n, int m)
+{
+	multiply(sum,a,b,m,n);
+	int t = 0;
+	for(int i = 0;i < m + n + 1;i++)
+	{
+		if(checkout[i] == sum[i])
+		{
+			t++;
+		}
+	}
+	if(t == m + n + 1)
+	{
+		cout << "OK" << endl;
+	}
+	else
+	{
+		cout << "FAIL" << endl;
+	}
+}
+
 int main()
 {
-	int mass1[4]={4,2,2,1};
-	int mass2[4]={2,2,2,2};
-	int mass3[7]={0};
-	int mass7[4]={0};
-	multiply(mass3,mass2,mass1,3,3);
-	for (int i = 0; i <= 6; i++)
-	{
-	cout << mass3[i] << " ";
-	}
-	cout << endl;
-	addiction(mass7,mass2,mass1,3,3);
-	for (int i = 0; i <= 3; i++)
-	{
-	cout << mass7[i] << " ";	
-	}
-	cout << endl;
-	int mass4[2]={4,6};
-	int mass5[7]={1,2,3,4,5,6,7};
-	int mass6[8]={0};
-	int mass8[7]={0};
-	multiply(mass6,mass4,mass5,1,6);
-	for (int i = 0; i <= 7; i++)
-	{
-	cout << mass6[i] << " ";	
-	}
-	cout << endl;
-	addiction(mass8,mass4,mass5,1,6);
-	for (int i = 0; i <= 6; i++)
-	{
-	cout << mass8[i] << " ";	
-	}
-	cout << endl;
+	int mass1[4] = {4,0,0,0};
+	int mass2[4] = {2,0,0,1};
+	int mass3[4] = {0};
+	int mass4[4] = {6,0,0,1};
+	assertaddi(mass4,mass3,mass2,mass1,3,3);
+	int mass5[7] = {0};
+	int mass6[7] = {8,0,0,4,0,0,0};
+	assertmulti(mass6,mass5,mass1,mass2,3,3);
 	return 0;
 }
