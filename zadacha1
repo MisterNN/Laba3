@@ -27,7 +27,29 @@ int** matriza(int ** a, int ** b, int ax, int ay, int by)
 	}
 	return result;
 }
-
+void assert(int** checkout,int** matrix1,int** matrix2,int ax,int ay,int bx)
+{
+	int k=0;
+	int** result=matriza(matrix1,matrix2,ax,ay,bx);
+	for (int i=0;i < bx;i++)
+	{
+		for (int j=0;j< ay;j++)
+		{
+			if (checkout[i][j]==result[i][j])
+				{
+		k++;// k++ если значения совпадают,после идет проверка,если К равно количеству значений = значит все они верны,значит мастрицы перемножены праильно.
+	}	
+		}
+	}
+	if (k==bx*ay)
+	{
+		cout << "OK" << endl;
+	}
+	else
+	{
+		cout << "FAIL" << endl;
+	}
+}
 int main()
 {
 	int** matrix1;
@@ -46,13 +68,13 @@ int main()
 	matrix2[1] = new int[2];
 	matrix2[1][0] = -3;
 	matrix2[1][1] = 4;
-	int** result = matriza(matrix1,matrix2,2,2,2);
-	for(int i = 0;i < 2;i++)
-	{
-		for(int j = 0;j < 2;j++)
-		{
-			cout << result[i][j] << " ";
-		}
-		cout << endl;
-	}
+	int** checkout;
+	checkout = new int * [2];
+	checkout[0]= new int[2];
+	checkout[0][0] = 6;
+	checkout[0][1] = 12;
+	checkout[1] = new int[2];
+	checkout[1][0] = 27;
+	checkout[1][1] = 9;
+	assert(checkout,matrix1,matrix2,2,2,2);
 }
